@@ -2,7 +2,7 @@
 const Manager = require('../lib/manager');
 
 describe("Manager", () => {
-    describe("Intialization", () => {
+    describe("Initialization", () => {
         it("should create an object with a name, id, email, and officeNumber if provided valid arguments", () => {
             const manager = new Manager('Tak', 3, 'theRealTak@gmail.com', 20);
 
@@ -12,9 +12,9 @@ describe("Manager", () => {
             expect(manager.officeNumber).toEqual(20);
         });
         it('should throw an error if provided no arguments or undefined', () => {
-            const manager = () => {throw new Manager()
+            const callBack = () => {throw new Manager()
             };
-            expect(manager).toThrow(Manager);
+            expect(callBack).toThrow(Manager);
         });
 
         it('should throw an error if "name" is not a string', () => {

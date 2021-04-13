@@ -11,15 +11,6 @@ const generatedTeamArray = [];
 
 //set up practice to make sure everything is working
 
-// const ben = new Employee('ben', 'manager', 'bdurham227');
-// console.log(ben);
-// console.log(ben.getId());
-// generatedTeamArray.push(ben);
-// console.log(generatedTeamArray);
-
-
-// const brie = new Manager('brie', 'manager', 'bnbbradford',65);
-// console.log(brie);
 console.log(generatedTeamArray);
 
 function init() {
@@ -69,13 +60,13 @@ function askManager () {
             name: 'officeNumber',
             message: "What is your team manager's officer number?"
         },
-        {
-            type: 'list',
-            name: ' role',
-            message: 'Please choose what kind of team member you would like to add to your team',
-            choices: ['Manager', 'Engineer','Intern'],
+        // {
+        //     type: 'list',
+        //     name: ' role',
+        //     message: 'Please choose what kind of team member you would like to add to your team',
+        //     choices: ['Manager', 'Engineer','Intern'],
            
-        },
+        // },
 
 
 
@@ -94,6 +85,18 @@ function askManager () {
     })
   
 };
+const teamBuilder = () => {
+    inquirer.createPromptModule([
+        {
+            type: 'list',
+            name: ' role',
+            message: 'Please choose what kind of team member you would like to add to your team',
+            choices: ['Manager', 'Engineer','Intern'],
+           
+        },
+       
+    ])
+}
 
 //create teamMemberBuilder()
 //create conditional or switch statements
