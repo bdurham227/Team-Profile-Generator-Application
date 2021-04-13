@@ -34,13 +34,12 @@ function getTeamInfo(){
         askManager();
     })
     
-   
 }
 
-
-
-
-
+//create askManager function
+//prompt user to get manager data
+//run promise .then()-> once promise finishes, instantiate teamMember to be a new Manager
+//push new Manager into empty array
 function askManager () {
    inquirer.prompt([
       
@@ -79,23 +78,41 @@ function askManager () {
         const teamMember = new Manager(name, id, email, officeNumber);
         generatedTeamArray.push(teamMember)
         console.log(generatedTeamArray)
-        //create teamMemberBuilder()
+        //create teamBuilder()
+        teamBuilder();
 
 
     })
   
 };
 const teamBuilder = () => {
-    inquirer.createPromptModule([
+    inquirer.prompt([
         {
             type: 'list',
-            name: ' role',
+            name: 'role',
             message: 'Please choose what kind of team member you would like to add to your team',
             choices: ['Manager', 'Engineer','Intern'],
            
         },
        
     ])
+    switch(answer){
+        case 1:
+            role = 'Engineer';
+            getEngineer();
+            break;
+            case 2:
+                role = 'Intern';
+                getIntern();
+                break;
+                case 3:
+                    role = 'Manager'
+                    askManager();
+                    break;
+                    case 4:
+                        role = "team is built, lets move on!";
+                        generateHtml();
+    }
 }
 
 //create teamMemberBuilder()
@@ -111,12 +128,39 @@ const getEngineer =() => {
             {
                 type:"input",
                 name: 'name',
-                message: "what is your interns name"
+                message: "what is your engineer name"
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Please enter your engineers email'
+
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'Please enter your engineers github'
+
             },
 
-        ]
-    )
+        ]).then((data) => {
+            const name = data.name;
+            const id = 2;
+            const email = data.email;
+            const github = data.github;
+            const teamMember = new Engineer(name, id, email, github);
+            generatedTeamArray.push(teamMember);
+            teamBuilder();
+        })
+    
 
+}
+const getIntern = () => {
+    inquirer.prompt([
+        {
+
+        }
+    ])
 }
 
 
