@@ -77,7 +77,7 @@ function askManager () {
         const officeNumber = data.officeNumber;
         const teamMember = new Manager(name, id, email, officeNumber);
         generatedTeamArray.push(teamMember)
-        console.log(generatedTeamArray)
+        // console.log(generatedTeamArray)
         //create teamBuilder()
         teamBuilder();
 
@@ -91,28 +91,30 @@ const teamBuilder = () => {
             type: 'list',
             name: 'role',
             message: 'Please choose what kind of team member you would like to add to your team',
-            choices: ['Manager', 'Engineer','Intern'],
+            choices: ['Manager', 'Engineer','Intern', 'Team Complete'],
            
         },
        
     ])
-    switch(answer){
-        case 1:
-            role = 'Engineer';
-            getEngineer();
+    .then((data) => {
+
+    
+    switch(data.role){
+
+        case 'Engineer':
+             getEngineer();
             break;
-            case 2:
-                role = 'Intern';
-                getIntern();
+
+            case 'Intern':
+                 getIntern();
                 break;
-                case 3:
-                    role = 'Manager'
+                case 'Manager':
                     askManager();
                     break;
-                    case 4:
-                        role = "team is built, lets move on!";
-                        generateHtml();
+                    case 'Team Complete':
+                         generateHtml();
     }
+})
 }
 
 //create teamMemberBuilder()
@@ -122,7 +124,7 @@ const teamBuilder = () => {
 //case a -intern
 //case b  - engineer 
 //return  getEngineer()
-const getEngineer =() => {
+const getEngineer = () => {
     inquirer.prompt(
         [
             {
@@ -158,16 +160,30 @@ const getEngineer =() => {
 const getIntern = () => {
     inquirer.prompt([
         {
-
-        }
-    ])
+            type: 'input',
+            name: 'name',
+            message: "What is the Intern team member's name?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Intern's email address?",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'What school does the Intern attend?'
+        },
+    ]).then((data) => {
+        const name = data.name;
+        const id = 3;
+        const email = data.email;
+        const school = data.school;
+        const teamMember = new Intern(name, id, email, school);
+        generatedTeamArray.push(teamMember);
+        teamBuilder();
+    })
 }
-
-
-
-
-
-
 //create engineer function
 //inquirer.prompt()
 //questions prompt
@@ -176,8 +192,7 @@ const getIntern = () => {
 //create new instance 
 //push to array
 //call next function
-
-
+//===========================
 //create intern function
 //inquirer.prompt()
 //questions prompt
@@ -186,31 +201,6 @@ const getIntern = () => {
 //create new instance
 //push to array
 //call next function
-
-
-
-
-// const questions = [ 
-//     {
-//     type: 'input',
-//     name: 'employee',
-//     message: "What kind of employee do you want on your team?",
-//     validate: function (answer) {
-//         if (answer.length < 1) {
-//             return console.log('Please enter the type of employee you would like on your team')
-//         }
-//     }
-
-
-
-
-// }]
-
-
-
-
-
-
 
 function generateHtml(){
     `jumbotron/title area`
