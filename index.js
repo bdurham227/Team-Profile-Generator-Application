@@ -74,6 +74,7 @@ function askManager () {
         const name = data.name;
         const id = 1;
         const email = data.email;
+       
         const officeNumber = data.officeNumber;
         const teamMember = new Manager(name, id, email, officeNumber);
         generatedTeamArray.push(teamMember)
@@ -203,7 +204,7 @@ const getIntern = () => {
 //push to array
 //call next function
 
-function generateHtml(data){
+function generateHtml(){
 
     const arrayToStoreFinishedHtml = []
     const htmlHeader = 
@@ -223,25 +224,59 @@ function generateHtml(data){
     </div>`;
     arrayToStoreFinishedHtml.push(htmlHeader);
 
-    for (i = 0; i < generatedTeamArray.length; i++) {
+    for (i = 1; i < generatedTeamArray.length; i++) {
 
     let teamHtmlData = `
      
         <div class="card" style="width: 18rem;">
-  <div class="card-header">
-    ${generatedTeamArray[i].role}
-    ${generatedTeamArray[i].name};
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">${generatedTeamArray[i].id}</li>
-    <li class="list-group-item">${generatedTeamArray[i].email}</li>`
+        <div class="card-header">
+        ${generatedTeamArray[i].name}\n
+        ${generatedTeamArray[i].getRole()}
+    
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${generatedTeamArray[i].id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${generatedTeamArray[i].email}">${generatedTeamArray[i].email}</a></li>
+                    `
+    
+
+    if (generatedTeamArray[i].officeNumber){
+        teamHtmlData +=  `
+        <p>${generatedTeamArray[i].officeNumber}</p>
+        `
+        
+    }
+   
+
+
+    if (generatedTeamArray[i].github){
+      teamHtmlData += `
+      <p>Github: <a href="http://github.com/${generatedTeamArray[i].github}"> ${generatedTeamArray[i].github}</a></p>
+      `
+     
+    }
+    
+    if (generatedTeamArray[i].school) {
+        teamHtmlData += `
+        <p>School: ${generatedTeamArray[i].school}</p>
+        `
+    }
+
+
+    // if(generatedTeamArray[i].school){
+    //     `
+    //     <li class="list-group-item">Officer Number: ${generatedTeamArray[i].getSchool()}</li>
+    //   </ul>
+    // </div>`
+    // arrayToStoreFinishedHtml.push(teamHtmlData);
+    // }
+    teamHtmlData += `
+    </div>
+    </div>
+    `
     arrayToStoreFinishedHtml.push(teamHtmlData);
 
-//     if(generatedTeamArray[i].contains('officeNumber'))
-//     `
-//     <li class="list-group-item">${data.officeNumber}</li>
-//   </ul>
-// </div>`
+
     }
 
 const ending =
