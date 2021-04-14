@@ -113,6 +113,7 @@ const teamBuilder = () => {
                     break;
                     case 'Team Complete':
                          generateHtml();
+                         console.log(generatedTeamArray);
     }
 })
 }
@@ -202,56 +203,58 @@ const getIntern = () => {
 //push to array
 //call next function
 
-function generateHtml(){
-    `jumbotron/title area`
+function generateHtml(data){
 
+    const arrayToStoreFinishedHtml = []
+    const htmlHeader = 
+    `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <title>Document</title>
+    </head>
+    <body>
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">${generatedTeamArray[0]}</h1>
+    </div>
+    </div>`;
+    arrayToStoreFinishedHtml.push(htmlHeader);
 
+    for (i = 0; i < generatedTeamArray.length; i++) {
 
-    addHtml()
+    let teamHtmlData = `
+     
+        <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    ${generatedTeamArray[i].role}
+    ${generatedTeamArray[i].name};
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${generatedTeamArray[i].id}</li>
+    <li class="list-group-item">${generatedTeamArray[i].email}</li>`
+    arrayToStoreFinishedHtml.push(teamHtmlData);
+
+//     if(generatedTeamArray[i].contains('officeNumber'))
+//     `
+//     <li class="list-group-item">${data.officeNumber}</li>
+//   </ul>
+// </div>`
+    }
+
+const ending =
+    `
+    </body>
+    </html>`;
+    
+    arrayToStoreFinishedHtml.push(ending);
+    
+    fs.writeFile(`./dist/${generatedTeamArray[0]}.html`, arrayToStoreFinishedHtml.join(''), (err) =>{
+        err ? console.error(err) : console.log(`successfully created html document with team members!`)
+    })
+
 }
 
-// const addHtml = () => {
-  
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//create function to write HTML file
-function writeToFile(fileName, data) {
-    //sets up shell to create a new file to file system
-    fs.writeFile(fileName, data, (err) => {
-        //tracks errors
-        err ? console.error(err) : console.log('successfully created new html file with team members names')
-    });
-}
-
-//function to initialize app
-// function init(){
-//     //call inquirer npm and run the prompt
-//     //return promise with data when prompt completes
-
-//     // inquirer.prompt(questions).then(function(data){
-
-//     //     //create teamHtml variable set value to generateHtml function (data);
-//     //     const teamHtml = generateHtml(data);
-//     //     //call writeToFile function to create an html file in the Dist folder with the data stored in teamHtml
-//     //     writeToFile('./Dist/index.html', teamHtml);
-
-//     // })
-   
-// }
-// //run app by calling init();
 init();
