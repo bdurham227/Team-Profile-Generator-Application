@@ -9,15 +9,14 @@ const fs = require('fs');
 //create empty array to push team members generated into
 const generatedTeamArray = [];
 
-//set up practice to make sure everything is working
 
-console.log(generatedTeamArray);
 
+//function that initializes the application
 function init() {
     getTeamInfo();
 }
 
-
+//function that prompts user to input a team name. Pushes that input into the empty array and calls askManager function
 function getTeamInfo(){
 
      inquirer.prompt([
@@ -35,11 +34,9 @@ function getTeamInfo(){
     })
     
 }
-
-//create askManager function
-//prompt user to get manager data
-//run promise .then()-> once promise finishes, instantiate teamMember to be a new Manager
-//push new Manager into empty array
+//function to get manager inputs
+//creates a promise that once fulfilled instantiates teamMember as a new instance of Manager class
+//pushes teamMember to empty array
 function askManager () {
    inquirer.prompt([
       
@@ -57,7 +54,7 @@ function askManager () {
         {
             type: 'number',
             name: 'officeNumber',
-            message: "What is your team manager's officer number?"
+            message: "What is your team manager's office number?"
         },
         // {
         //     type: 'list',
@@ -86,6 +83,7 @@ function askManager () {
     })
   
 };
+//prompts user to select which team member they would like to add next
 const teamBuilder = () => {
     inquirer.prompt([
         {
@@ -99,7 +97,7 @@ const teamBuilder = () => {
     ])
     .then((data) => {
 
-    
+    //switch statement checking which role was selected and returns correlating function 
     switch(data.role){
 
         case 'Engineer':
@@ -118,14 +116,7 @@ const teamBuilder = () => {
     }
 })
 }
-
-//create teamMemberBuilder()
-//create conditional or switch statements
-//create cases 
-//intern, engineer, manager
-//case a -intern
-//case b  - engineer 
-//return  getEngineer()
+//function that runs prompt to get engineer information if engineer was selected from the list of choices
 const getEngineer = () => {
     inquirer.prompt(
         [
@@ -146,7 +137,8 @@ const getEngineer = () => {
                 message: 'Please enter your engineers github'
 
             },
-
+            //fulfill promise to instantiate teamMember as a new instance of Engineer class
+            //then calls teamBuilder() to prompt the user if they would like to add more team members
         ]).then((data) => {
             const name = data.name;
             const id = 2;
@@ -159,6 +151,7 @@ const getEngineer = () => {
     
 
 }
+//function that prompts for user inputs if intern was selected
 const getIntern = () => {
     inquirer.prompt([
         {
@@ -176,6 +169,8 @@ const getIntern = () => {
             name: 'school',
             message: 'What school does the Intern attend?'
         },
+        //promise that instantiates a new instance of Intern class and pushe to empty array
+        //then calls teamBuilder() to prompt the user if they would like to add more team members
     ]).then((data) => {
         const name = data.name;
         const id = 3;
@@ -186,24 +181,8 @@ const getIntern = () => {
         teamBuilder();
     })
 }
-//create engineer function
-//inquirer.prompt()
-//questions prompt
-//return promise .then()
-//const for name,id,email, github
-//create new instance 
-//push to array
-//call next function
-//===========================
-//create intern function
-//inquirer.prompt()
-//questions prompt
-//return promise .then()
-//const name id email school
-//create new instance
-//push to array
-//call next function
 
+//function that generates html based off user inputs
 function generateHtml(){
 
     const arrayToStoreFinishedHtml = []
@@ -214,35 +193,48 @@ function generateHtml(){
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <title>Document</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <title>${generatedTeamArray[0]}</title>
     </head>
     <body>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid bg-danger text-light">
     <div class="container">
-    <h1 class="display-4">${generatedTeamArray[0]}</h1>
+    <h1 class="display-4 text-center">${generatedTeamArray[0]}</h1>
     </div>
-    </div>`;
+    </div>
+    <div class="container">
+    <div class="row">
+    `;
     arrayToStoreFinishedHtml.push(htmlHeader);
-
+    //for loop that runs the length of of generatedTeamArray's length
+    //access generatedTeamArrays key/values to display inputs dynamically
     for (i = 1; i < generatedTeamArray.length; i++) {
 
     let teamHtmlData = `
-     
+    
+    
+    <div class="col-lg-4 col-md-12 mb-4">
+        
         <div class="card" style="width: 18rem;">
-        <div class="card-header">
-        ${generatedTeamArray[i].name}\n
-        ${generatedTeamArray[i].getRole()}
+        <div class="card-header bg-primary text-light">
+        <h1>${generatedTeamArray[i].name}</h1>
+        <h3>${generatedTeamArray[i].getRole()}</h3>
     
         </div>
+        <div class="card p-2 m-3">
+        <div class="card-body p-2">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${generatedTeamArray[i].id}</li>
                     <li class="list-group-item">Email: <a href="mailto:${generatedTeamArray[i].email}">${generatedTeamArray[i].email}</a></li>
+                   
                     `
     
 
     if (generatedTeamArray[i].officeNumber){
         teamHtmlData +=  `
-        <p>${generatedTeamArray[i].officeNumber}</p>
+        <li class="list-group-item"> Office Number: ${generatedTeamArray[i].officeNumber}</li>
+        
         `
         
     }
@@ -251,14 +243,16 @@ function generateHtml(){
 
     if (generatedTeamArray[i].github){
       teamHtmlData += `
-      <p>Github: <a href="http://github.com/${generatedTeamArray[i].github}"> ${generatedTeamArray[i].github}</a></p>
+      <li class="list-group-item"> Github: <a href="http://github.com/${generatedTeamArray[i].github}"> ${generatedTeamArray[i].github}</a></li>
+     
       `
      
     }
     
     if (generatedTeamArray[i].school) {
         teamHtmlData += `
-        <p>School: ${generatedTeamArray[i].school}</p>
+        <li class="list-group-item"> School: ${generatedTeamArray[i].school}</li>
+       
         `
     }
 
@@ -271,8 +265,13 @@ function generateHtml(){
     // arrayToStoreFinishedHtml.push(teamHtmlData);
     // }
     teamHtmlData += `
+    
     </div>
     </div>
+    </div>
+    </div>
+    
+   
     `
     arrayToStoreFinishedHtml.push(teamHtmlData);
 
@@ -281,11 +280,13 @@ function generateHtml(){
 
 const ending =
     `
+    </div>
+    </div>
     </body>
     </html>`;
     
     arrayToStoreFinishedHtml.push(ending);
-    
+    //access the fs module to create a new html file with the user's responses 
     fs.writeFile(`./dist/${generatedTeamArray[0]}.html`, arrayToStoreFinishedHtml.join(''), (err) =>{
         err ? console.error(err) : console.log(`successfully created html document with team members!`)
     })
