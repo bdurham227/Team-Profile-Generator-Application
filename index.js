@@ -3,6 +3,7 @@ const Employee = require('./lib/employee');
 const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager');
 const Intern = require('./lib/intern');
+
 //setup inquirer and fs
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -71,12 +72,10 @@ function askManager () {
         const name = data.name;
         const id = 1;
         const email = data.email;
-       
         const officeNumber = data.officeNumber;
         const teamMember = new Manager(name, id, email, officeNumber);
         generatedTeamArray.push(teamMember)
-        // console.log(generatedTeamArray)
-        //create teamBuilder()
+        //call teamBuilder()
         teamBuilder();
 
 
@@ -90,7 +89,7 @@ const teamBuilder = () => {
             type: 'list',
             name: 'role',
             message: 'Please choose what kind of team member you would like to add to your team',
-            choices: ['Manager', 'Engineer','Intern', 'Team Complete'],
+            choices: ['Engineer','Intern', 'Team Complete'],
            
         },
        
@@ -107,12 +106,13 @@ const teamBuilder = () => {
             case 'Intern':
                  getIntern();
                 break;
-                case 'Manager':
-                    askManager();
-                    break;
+                // case 'Manager':
+                //     askManager();
+                //     break;
                     case 'Team Complete':
                          generateHtml();
-                         console.log(generatedTeamArray);
+                         break;
+                       
     }
 })
 }
@@ -255,15 +255,6 @@ function generateHtml(){
        
         `
     }
-
-
-    // if(generatedTeamArray[i].school){
-    //     `
-    //     <li class="list-group-item">Officer Number: ${generatedTeamArray[i].getSchool()}</li>
-    //   </ul>
-    // </div>`
-    // arrayToStoreFinishedHtml.push(teamHtmlData);
-    // }
     teamHtmlData += `
     
     </div>

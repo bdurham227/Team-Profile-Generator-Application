@@ -99,9 +99,9 @@ describe("Intern", () => {
     });
 
     describe('getRole', () => {
-        it('it should return Intern role', () => {
+        it('it should return Intern role with font-awesome icon', () => {
            
-            expect(new Intern('brie', 2, 'briebuttsowhat@gmail.com','school').getRole()).toEqual('intern');
+            expect(new Intern('brie', 2, 'briebuttsowhat@gmail.com','school').getRole()).toEqual('Intern <i class="fas fa-user-graduate"></i>');
             
         });
     });

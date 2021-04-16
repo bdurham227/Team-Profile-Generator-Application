@@ -99,9 +99,9 @@ describe("Engineer", () => {
     });
 
     describe('getRole', () => {
-        it('it should return engineer role', () => {
+        it('it should return engineer role with matchin fontawesome icon', () => {
            
-            expect(new Engineer('benji', 2, 'benjibuttsowhat@gmail.com','github').getRole()).toEqual('engineer');
+            expect(new Engineer('benji', 2, 'benjibuttsowhat@gmail.com','github').getRole()).toEqual('Engineer <i class="fas fa-glasses"></i>');
             
         });
     });

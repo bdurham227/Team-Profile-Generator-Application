@@ -99,7 +99,7 @@ describe("Manager", () => {
     describe('getRole', () => {
         it('it should return manager role', () => {
            
-            expect(new Manager('Tak', 2, 'theRealTak@gmail.com',20).getRole()).toEqual('manager');
+            expect(new Manager('Tak', 2, 'theRealTak@gmail.com',20).getRole()).toEqual('Manager <i class="fas fa-mug-hot"></i>');
             
         });
     });
