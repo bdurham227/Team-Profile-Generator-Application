@@ -49,10 +49,18 @@
 
 
       node index.js
+
+   Run Tests:    
+```
+   npm test
+```
+
+
+
    
 Watch Walkthrough video: 
 --
-[video] https://drive.google.com/file/d/1bpcUvRyO0zkZ1smudnuLBClar4rPvyWa/preview
+[video] https://drive.google.com/file/d/1aoNEfzJqW8l4CSBRbfoBA1R3RciC7Cgw/preview
 
 
 Screenshot of Application in Command:
