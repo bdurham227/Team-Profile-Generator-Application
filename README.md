@@ -60,7 +60,10 @@
    
 Watch Walkthrough video: 
 --
-[video] https://drive.google.com/file/d/1aoNEfzJqW8l4CSBRbfoBA1R3RciC7Cgw/preview
+[video]
+<figure class="video_container">
+<iframe src="https://drive.google.com/file/d/1aoNEfzJqW8l4CSBRbfoBA1R3RciC7Cgw/preview" width="640" height="480" allowfullscreen="true"></iframe>
+</figure>
 
 
 Screenshot of Application in Command:
