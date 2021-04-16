@@ -58,15 +58,14 @@
 
 
    
-Watch Walkthrough video: 
---
-[video]
-<figure class="video_container">
-<video controls="true" allowfullscreen="true" poster="images/teamvideoscreenshot.png">
-<source src="path/to/images/teamappvideo.mp4" type="video/mp4">
-</video>
+Click To Watch Walkthrough video: 
 
-</figure>
+
+
+[![IMAGE ALT TEXT](images/teamvideoscreenshot.png)](https://drive.google.com/file/d/1aoNEfzJqW8l4CSBRbfoBA1R3RciC7Cgw/view "Video title")
+
+
+
 
 
 Screenshot of Application in Command:
