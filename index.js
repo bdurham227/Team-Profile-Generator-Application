@@ -57,16 +57,7 @@ function askManager () {
             name: 'officeNumber',
             message: "What is your team manager's office number?"
         },
-        // {
-        //     type: 'list',
-        //     name: ' role',
-        //     message: 'Please choose what kind of team member you would like to add to your team',
-        //     choices: ['Manager', 'Engineer','Intern'],
-           
-        // },
-
-
-
+      
 
     ]).then((data) => {
         const name = data.name;
@@ -106,9 +97,7 @@ const teamBuilder = () => {
             case 'Intern':
                  getIntern();
                 break;
-                // case 'Manager':
-                //     askManager();
-                //     break;
+               
                     case 'Team Complete':
                          generateHtml();
                          break;
@@ -216,7 +205,7 @@ function generateHtml(){
     
     <div class="col-lg-4 col-md-12 mb-4">
         
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="max-width: 18rem;">
         <div class="card-header bg-primary text-light">
         <h1>${generatedTeamArray[i].name}</h1>
         <h3>${generatedTeamArray[i].getRole()}</h3>
