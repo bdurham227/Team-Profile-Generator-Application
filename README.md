@@ -65,11 +65,11 @@ Watch Walkthrough video:
 
 Screenshot of Application in Command:
 --
-![Screenshot](images\teamprofilenode.png)
+![Screenshot](images/teamprofilenode.png)
 
 Screenshot of Application in Browswer:
 --
-![Screenshot](images\taemprofilwith4screenshot.png)
+![Screenshot](images/taemprofilwith4screenshot.png)
 
 
 
