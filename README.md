@@ -62,7 +62,10 @@ Watch Walkthrough video:
 --
 [video]
 <figure class="video_container">
-<iframe src="https://drive.google.com/file/d/1aoNEfzJqW8l4CSBRbfoBA1R3RciC7Cgw/preview" width="640" height="480" allowfullscreen="true"></iframe>
+<video controls="true" allowfullscreen="true" poster="images/teamvideoscreenshot.png">
+<source src="path/to/images/teamappvideo.mp4" type="video/mp4">
+</video>
+
 </figure>
 
 
